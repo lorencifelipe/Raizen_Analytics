@@ -80,6 +80,24 @@ class Problem:
         for c in self.cylinders:
             name = "z_" + c
             self.z[c] = LpVariable(name, cat=LpBinary)
+    
+    #Create Model
+    def createModel(self):
+        #Constraint 1
+        self.prob += lpSum([self.x[a] for a in self.containeres]) == 35
+        #Constraint 2
+        self.prob += lpSum([self.cylindersVolume[c]*self.z[c] for c in self.cylinders]) == 5163.69
+        #Constraint 3
+        self.prob += lpSum([self.cylindersWeight[c]*self.z[c] for c in self.cylinders]) == 18844
+        #Constraint 4
+        for a in self.containeres:
+            self.prob += lpSum([self.y[self.idx(a,b)] for b in self.indexedBoxes[a]]) <= self.x[a]*len(self.indexedBoxes[a]) 
+        #Constraint 5
+        for a in self.containeres:
+            self.prob += lpSum([self.y[self.idx(a,b)] for b in self.indexedBoxes[a]]) >= self.x[a]
+        #Constraint 6
+        for b in self.boxes:
+            self.prob += lpSum([self.z[self.idx(b,c)] for c in self.indexedCylinders[b]]) == self.y[b]
 
     # Constructor
     def __init__(self, file):
