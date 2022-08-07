@@ -2,6 +2,8 @@ import pandas as pd
 from pulp import *
 
 # Class Problem
+
+
 class Problem:
 
     # Indexer method -> Make pvt
@@ -64,6 +66,21 @@ class Problem:
                         "container == @a and box == @b and cylinder == @c")[column]), 2)
         return info
 
+
+    ## Public ##
+
+    #Create Variables
+    def createVars(self):
+        for a in self.containers:
+            name = "x_"+a
+            self.x[a] = LpVariable(name, cat=LpBinary)
+        for b in self.boxes:
+            name = "y_" + b
+            self.y[b] = LpVariable(name, cat=LpBinary)
+        for c in self.cylinders:
+            name = "z_" + c
+            self.z[c] = LpVariable(name, cat=LpBinary)
+
     # Constructor
     def __init__(self, file):
         self.df = self.loadFile(file)
@@ -74,3 +91,6 @@ class Problem:
         self.cylinders = self.loadCylinders()
         self.cylindersWeight = self.loadInfo("cylinderWeight")
         self.cylindersVolume = self.loadInfo("cylindersVolume")
+        self.prob = LpProblem("Cylinders_Problem")
+        self.x, self.y, self.z = {}, {}, {}
+        

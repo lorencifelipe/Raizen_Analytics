@@ -118,7 +118,6 @@ for a in indexed_boxes:
             cylinders_volume[a+"_"+b+"_"+str(c)] = float(
                 df.query("container == @a and box == @b and cylinder == @c")["cylinderVolume"])
 
-# STOP HERE
 # Modelo
 prob = LpProblem("Raizen")
 
@@ -139,6 +138,8 @@ for b in boxes:
 for c in cylinders:
     name = "z_" + c
     z[c] = LpVariable(name, cat=LpBinary)
+
+# STOP HERE
 
 # #Add constraints
 
