@@ -139,8 +139,6 @@ for c in cylinders:
     name = "z_" + c
     z[c] = LpVariable(name, cat=LpBinary)
 
-# STOP HERE
-
 # #Add constraints
 
 prob += lpSum([x[a] for a in containeres]) == 35
@@ -158,6 +156,8 @@ for a in containeres:
 
 for b in boxes:
     prob += y[b] == lpSum([z[b+"_"+str(c)] for c in indexed_cylinders[b]])
+
+# STOP HERE
 
 
 # Extra constraints
