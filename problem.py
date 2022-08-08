@@ -129,7 +129,60 @@ class Problem:
 
     #Check the solution
     def checkSolution(self):
-        pass
+        approved = True
+
+        #Check number of containers
+        numberContainers = 0
+        for a in self.containers:
+            if value(self.x[a]) == 1:
+                numberContainers+=1
+        if numberContainers != 35: 
+            approved = "WARNING: the solution does not have 35 containers."   
+
+        #Check Volume/Weight
+        totalVolume, totalWeight = 0, 0
+        for c in self.cylinders:
+            if value(self.z[c]) == 1:
+                totalVolume += self.cylindersVolume[c]
+                totalWeight += self.cylindersWeight[c]
+        if round(totalVolume,2) != 5163.69:
+            approved = "WARNING: the sum of cylinders' volumes is different from 5163.69."
+        if totalWeight != 18844:
+            approved = "WARNING: the sum of cylinder' weight is different from 18844." 
+        
+        #Check if for each selected container -> at least one selected box
+        #For each not select container -> there are no selected boxes
+        for a in self.containers:
+            if value(self.x[a]) == 1:
+                for b in self.indexedBoxes[a]:
+                    if value(self.y[self.idx(a,b)]) == 1:
+                        break
+                else:
+                    approved = "WARNING: problem in boxes' selection."
+            else:
+                for b in self.indexedBoxes[a]:
+                    if value(self.y[self.idx(a,b)]) == 1:
+                        approved = "WARNING: problem in boxes' selection."
+
+        #Check for each select box, if there is exactly one selected cylinder from this box
+        #Check for each not selected box ->  there can be no cylinders selected
+        for b in self.boxes:
+            if value(self.y[b]) == 1:
+                cylinderCounter = 0
+                for c in self.indexedCylinders[b]:
+                    if value(self.z[self.idx(b,c)]) == 1:
+                        cylinderCounter +=1
+                if cylinderCounter!=1:
+                    approved = "WARNING: problem in cylinders' selection."
+            else:
+                cylinderCounter = 0
+                for c in self.indexedCylinders[b]:
+                    if value(self.z[self.idx(b,c)]) == 1:
+                        cylinderCounter+=1
+                if cylinderCounter > 0:
+                    approved = "WARNING: problem in cylinders' selection"
+
+        return approved
 
     def incrementSolutionCounter(self):
         self.solutionCounter+=1

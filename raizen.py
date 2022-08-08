@@ -2,8 +2,7 @@ import pandas as pd
 from pulp import *
 
 # PENDENCIAS
-# Arredondamento na leitura
-# indexer
+# privts
 
 
 def checkSolution():
@@ -19,12 +18,12 @@ def checkSolution():
 
     ## ARREDONDAMENTO
     # # check volume
-    # totalVolume = 0
-    # for c in cylinders:
-    #     if value(z[c]) == 1:
-    #         totalVolume += cylinders_volume[c]
-    # if totalVolume != 5163.69:
-    #     ok = False
+    totalVolume = 0
+    for c in cylinders:
+        if value(z[c]) == 1:
+            totalVolume += cylinders_volume[c]
+    if totalVolume != 5163.69: #roundhere
+        ok = False
 
     # check weight
     totalWeight = 0
@@ -190,8 +189,7 @@ while True:
         z_count = countZ(z)
         # cut opt. sol.
         #prob += lpSum([z[c] for c in cylinders if value(z[c]) == 1]) <= 34
-        prob += lpSum([z[c]
-                       for c in cylinders if value(z[c]) == 1]) <= z_count - 1
+        prob += lpSum([z[c] for c in cylinders if value(z[c]) == 1]) <= z_count - 1
 
         solution_counter += 1
         print("Solution counter: " + str(solution_counter))
