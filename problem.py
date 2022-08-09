@@ -123,9 +123,16 @@ class Problem:
         solution.close()
         os.chdir(dir)
 
+    #Count number of z variables
+    def countZ(self):
+        counter = 0
+        for c in self.z:
+            if value(self.z[c]) == 1: c+=1
+        return c
+
     #Add cut
     def addCut(self):
-        self.prob += lpSum([self.z[c] for c in self.cylinders if value(self.z[c]) == 1]) <= 34 #or zCount
+        self.prob += lpSum([self.z[c] for c in self.cylinders if value(self.z[c]) == 1]) <= self.countZ - 1 #or zCount
 
     #Check the solution
     def checkSolution(self):
