@@ -127,12 +127,12 @@ class Problem:
     def countZ(self):
         counter = 0
         for c in self.z:
-            if value(self.z[c]) == 1: c+=1
-        return c
+            if value(self.z[c]) == 1: counter+=1
+        return counter
 
     #Add cut
     def addCut(self):
-        self.prob += lpSum([self.z[c] for c in self.cylinders if value(self.z[c]) == 1]) <= self.countZ - 1 #or zCount
+        self.prob += lpSum([self.z[c] for c in self.cylinders if value(self.z[c]) == 1]) <= self.countZ() - 1 #or zCount
 
     #Check the solution
     def checkSolution(self):
@@ -194,6 +194,9 @@ class Problem:
     def incrementSolutionCounter(self):
         self.solutionCounter+=1
 
+    def getSolutionCounter(self):
+        return self.solutionCounter
+
     # Constructor
     def __init__(self, file):
         self.solutionCounter = 0
@@ -207,4 +210,3 @@ class Problem:
         self.cylindersVolume = self.loadInfo("cylinderVolume")
         self.prob = LpProblem("Cylinders_Problem")
         self.x, self.y, self.z = {}, {}, {}
-        

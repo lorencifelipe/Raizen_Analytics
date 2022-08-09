@@ -2,7 +2,11 @@ import pandas as pd
 from pulp import *
 
 # PENDENCIAS
+# Melhorar leitura
+# Melhorar checker
 # privts
+# checar padrões
+# Comment
 
 
 def checkSolution():
