@@ -1,5 +1,7 @@
 # Challenge - Data Scientist (Optimization and Prescriptive Analytics) - Raízen
 
+![Logo Raízen](/images/raizen_croped.jpg)
+
 This repository contains all the implementations and files related to the challenge for Data Scientist (Optimization and Prescriptive Analytics) at Raízen, elaborated by Felipe Furtado Lorenci.
 
 ## General information
