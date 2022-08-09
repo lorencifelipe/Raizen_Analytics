@@ -17,7 +17,7 @@ The challenge rules are contained in the folder [/instructions](https://github.c
 - [articleRaizen.pdf](https://github.com/lorencifelipe/Raizen_Analytics/blob/main/articleRaizen.pdf): an article containg informations about the mathematical model
 - [data.csv](https://github.com/lorencifelipe/Raizen_Analytics/blob/main/data.csv): the dataset, ready to be readed to the program 
 - [main.py](https://github.com/lorencifelipe/Raizen_Analytics/blob/main/main.py): the main file
-- [problem.py](https://github.com/lorencifelipe/Raizen_Analytics/blob/main/problem.py): the class Program
+- [problem.py](https://github.com/lorencifelipe/Raizen_Analytics/blob/main/problem.py): the class Problem
 
 ## Guide of execution 
 
