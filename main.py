@@ -1,12 +1,13 @@
+# Import libraries
 from problem import *
-from math import inf
 
 # Toggle the comment between lines 5 and 6 to "exhaustion test" or K limited solutions
 #K = inf
-K = 5
+K = 1000
 
+# Main Function
 def main():
-    file = "data.csv"
+    file = "data.csv"                 
     problem = Problem(file)
     problem.createVars()
     problem.createModel()
@@ -23,5 +24,5 @@ def main():
         else:
             break
 
-
+# Call to main function 
 main()
