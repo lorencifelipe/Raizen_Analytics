@@ -5,9 +5,6 @@ from pulp import *
 # Melhorar leitura
 # Melhorar checker
 # privts
-# checar padrões
-# Comment
-
 
 def checkSolution():
     ok = True

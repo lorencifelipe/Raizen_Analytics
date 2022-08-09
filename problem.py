@@ -9,11 +9,11 @@ class Problem:
 
     # Indexer method
     def idx(self, a, b):
-        return(str(a)+"_"+str(b))
+        return str(a)+"_"+str(b)
 
     # Indexer method
     def idxc(self, a, b, c):
-        return(str(a)+"_"+str(b)+"_"+str(c))
+        return str(a)+"_"+str(b)+"_"+str(c)
 
     # Method to load file
     def loadFile(self, file):
@@ -125,7 +125,8 @@ class Problem:
     def countZ(self):
         counter = 0
         for c in self.z:
-            if value(self.z[c]) == 1: counter+=1
+            if value(self.z[c]) == 1: 
+                counter+=1
         return counter
 
     # Method to add a cut in the model
